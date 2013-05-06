@@ -1,0 +1,236 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<head>
+<title>Name Fight !</title>
+<script type="text/javascript" src="namefight_files/jquery00.js"></script>
+<script src="namefight_files/md5_js00.js"></script>
+<script src="namefight_files/frame000.js"></script>
+<script src="namefight_files/action00.js"></script>
+<style rel="stylesheet" type="text/css">
+#mainbox {
+	position:absolute;
+	width:700px;
+	height:700px;
+	top:50px;
+	left:267px;
+}
+#gamebox {
+	position:absolute;
+	background-color:#555555;
+	width:700px;
+	height:700px;
+}
+#instbox {
+	position:absolute;
+	display:none;
+	background-color:#080808;
+	color:white;
+	width:700px;
+	height:700px;
+}
+
+#instpanel {
+	position:absolute;
+	top:-15px;
+	margin:0;
+	padding:0;
+	height:15px;
+	background-color:#080808;
+}
+
+#gamebox ul {
+	position:absolute;
+	font-family:"微软雅黑";
+}
+
+#info1,#infolist1{
+	left:30px;
+	color:#99CCFF;
+}
+
+#info2,#infolist2 {
+	left:330px;
+	color:#00FF00;
+}
+
+#info1,#info2 {
+	top:30px;
+	font-size:13pt;
+}
+.infolist {
+	top:95px;
+	display:none;
+}
+
+#speedbar {
+	position:absolute;
+	top:250px;
+	left:32px;
+	display:none;
+}
+
+#bar {
+	position:absolute;
+	width:630px;
+	height:15px;
+}
+
+.obj {
+	position:absolute;
+	height:15px;
+	width:5px;
+}
+
+#mesbox {
+	position:absolute;
+	color:white;
+	top:285px;
+	left:25px;
+	font-size:11pt;
+	width:635px;
+	display:none;
+	background-color:black;
+	margin:6px;
+	border:1px dashed silver;
+	padding:8px;
+}
+.name0 {
+	color:#99CCFF;
+	font-size:13pt;
+	font-weight:600;
+	font-family:"微软雅黑";
+}
+.name1 {
+	color:#00FF00;
+	font-size:13pt;
+	font-weight:600;
+	font-family:"微软雅黑";
+}
+.crit {
+	color:red;
+	font-size:13pt;
+	font-family:"黑体";
+}
+.spell {
+	color:#99CC00;
+	font-size:13pt;
+	font-family:"华文细黑";
+}
+.talent {
+	color:purple;
+	font-size:14pt;
+	font-weight:600;
+	font-family:"华文彩云";
+}
+.stat {
+	color:#FF9900;
+	font-size:11pt;
+	font-family:"华文中宋";
+}
+.hurt {
+	color:red;
+	font-size:12pt;
+	font-family:"黑体";
+}
+.health {
+	color:green;
+	font-size:12pt;
+	font-family:"黑体";
+}
+a {
+	color:lime;
+	cursor:pointer;
+	decoration:none;
+}
+</style>
+</head>
+<body>
+	<div id="debug">
+		<img style="display:none;" src="namefight_files/Count000.gif">
+	</div>
+
+	<div id="mainbox">
+
+
+		<div id="gamebox">
+			<p><button id="switcher" style="position:absolute;left:300px;top:4px;">开始战斗</button></p>
+			<div id="namebox" class="name_pro">
+				<ul id="info1">
+					<li>名字：<input type="text" id="player1" size="14" value="在此输入角色名" onfocus="this.value=''"></li>
+					<li>职业：
+						<select id="pro1" size="1">
+							<option value="1">武士（高防高力）
+							<option value="2">盗贼（高速高爆）
+							<option value="3">巫师（高施法率）
+						</select>
+					</li>
+				</ul>
+				<ul id="info2" class="name_pro">
+					<li>名字：<input type="text" id="player2" size="14" value="在此输入角色名" onfocus="this.value=''"></li>
+					<li>职业：
+						<select id="pro2" size="1">
+							<option value="1">武士（高防高力）
+							<option value="2">盗贼（高速高爆）
+							<option value="3">巫师（高施法率）
+						</select>
+					</li>
+				</ul>
+			</div>
+			<div id="info_list">
+				<ul id="infolist1" class="infolist">
+					<li>生命：<span id="health1"></span><a name="stat1" class="stat"></a></li>
+					<li>力量：<span id="strength1"></span><a name="stat1" class="stat"></a></li>
+					<li>护甲：<span id="armor1"></span><a name="stat1" class="stat"></a></li>
+					<li>速度：<span id="speed1"></span><a name="stat1" class="stat"></a></li>
+					<li>幸运：<span id="luck1"></span><a name="stat1" class="stat"></a></li>
+					<li>灵力：<span id="power1"></span><a name="stat1" class="stat"></a></li>
+					<li style="display:none">时间：<span id="tpoint1"></span><a name="stat1" class="stat"></a></li>
+				</ul>
+				<ul id="infolist2" class="infolist">
+					<li>生命：<span id="health2"></span><a name="stat2" class="stat"></a></li>
+					<li>力量：<span id="strength2"></span><a name="stat2" class="stat"></a></li>
+					<li>护甲：<span id="armor2"></span><a name="stat2" class="stat"></a></li>
+					<li>速度：<span id="speed2"></span><a name="stat2" class="stat"></a></li>
+					<li>幸运：<span id="luck2"></span><a name="stat2" class="stat"></a></li>
+					<li>灵力：<span id="power2"></span><a name="stat2" class="stat"></a></li>
+					<li style="display:none">时间：<span id="tpoint2"></span><a name="stat2" class="stat"></a></li>
+				</ul>
+			</div>
+			<div id="speedbar">
+				<select id="speedadjuster" onchange="speedAdjust(this.value);">
+					<option value="0">调节速度
+					<option value="9">1
+					<option value="8">2
+					<option value="7">3
+					<option value="6">4
+					<option value="5">5
+					<option value="4">6
+					<option value="3">7
+					<option value="2">8
+				</select>
+				<br>
+				<span id="obj1" class="obj"></span>
+				<span id="obj2" class="obj"></span>
+				<span id="bar"></span>
+			</div>
+			<div id="mesbox">
+				<fieldset style="margin:5px;">
+					<legend style="color:gray;font-weight:bold">战斗记录</legend>
+					<div id="message_box" style="height:330px;text-align:left;overflow:auto;"></div>
+				</fieldset>
+			</div>
+		</div>
+		
+		<a id="instpanel" onclick="showInst();">游戏说明↓</a>
+		<div id="instbox">
+			<fieldset style="margin:5px;">
+				<legend style="color:gray;font-weight:bold;font-size:16pt;">游戏说明</legend>
+				<div id="instruction" style="width:670px;height:650px;overflow:auto;"></div>
+			</fieldset>
+		</div>
+		
+	</div>
+<script type="text/javascript" src="namefight_files/instruct.js"></script>
+</body>
+</html>
+<!-- This document saved from http://home.ustc.edu.cn/~kkjames/game/namefight/ -->
